@@ -24,11 +24,14 @@ Se aplicaron técnicas de **aprendizaje automático supervisado** para evaluar q
    - *Numéricas*: latitud, longitud, días, códigos, etc.  
    - *Categóricas*: fuente, estado, condado, etc. (transformadas con *one-hot encoding*).  
 4. **Imputación de valores faltantes** mediante la mediana.  
-5. **División de datos**:  
+5. **Descartamos columnas como `Daily AQI Value` y `Daily Obs Count`**.  
+   - Estas columnas estaban **fuertemente relacionadas con el target (`Daily Mean PM10 Concentration`)**.  
+   - En Machine Learning, incluirlas generaría *data leakage*, ya que el modelo tendría información demasiado directa sobre lo que queremos predecir.  
+6. **División de datos**:  
    - Entrenamiento → 2023 y 2024.  
    - Prueba → 2025.  
-6. **Entrenamiento de modelo de Regresión Lineal**.  
-7. **Evaluación con métricas**:  
+7. **Entrenamiento de modelo de Regresión Lineal**.  
+8. **Evaluación con métricas**:  
    - MAE (Error Medio Absoluto)  
    - RMSE (Raíz del Error Cuadrático Medio)  
    - R² (Coeficiente de Determinación)  
@@ -74,5 +77,9 @@ Aunque los resultados no fueron los esperados, el proceso permitió:
 - Explorar y limpiar datos.  
 - Construir un pipeline reproducible.  
 - Identificar las limitaciones de un modelo lineal.  
+- Aprender la importancia de **evitar data leakage**: descartar variables como *Daily AQI Value* y *Daily Obs Count* que estaban demasiado relacionadas con el target.  
+
+El siguiente paso será **probar modelos no lineales y métodos especializados en series de tiempo** para mejorar la capacidad predictiva.  
+
 
 El siguiente paso será **probar modelos no lineales y métodos especializados en series de tiempo** para mejorar la capacidad predictiva.  
